@@ -1,1 +1,0 @@
-# react-navigation-redux-demo
