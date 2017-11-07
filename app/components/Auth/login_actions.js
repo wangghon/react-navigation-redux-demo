@@ -1,11 +1,13 @@
+import { AsyncStorage } from 'react-native';
+
 import {
   INITIALIZE_APP,
-  CHECK_REMEMBER_ME,
-  TOGGLE_REMEMBER_ME,
-  LOGIN_INITIALIZE,
+  // CHECK_REMEMBER_ME,
+  // TOGGLE_REMEMBER_ME,
+  // LOGIN_INITIALIZE,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
 } from './login_types';
 
 //INITIALIZE APP
@@ -23,9 +25,30 @@ export const initializeApp = () => {
 
     return dispatch({
       type: LOGIN_SUCCESS,
-      payload: user
+      payload: user,
     });
     // navigation.navigate('WeLoggedIn')
     // pass navigation into this function if you want
-  }
-}
+  };
+};
+
+//LOGOUT
+export const onLogout = (navigation) => {
+  return async (dispatch) => {
+    try {
+      await AsyncStorage.removeItem('token');
+
+      navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{ type: 'Navigate', routeName: 'Login' }],
+      });
+
+      return dispatch({ type: LOGOUT });
+    } catch (errors) {
+      // pass the user through with no error
+      // this restores INITIAL_STATE (see login_reducer.js)
+      return dispatch({ type: LOGOUT });
+    }
+  };
+};

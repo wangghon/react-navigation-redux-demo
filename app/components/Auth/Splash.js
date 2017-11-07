@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 // https://github.com/oblador/react-native-animatable
 // this is a library you REALLY should be using
 import * as Animatable from 'react-native-animatable';
@@ -32,15 +32,14 @@ class Splash extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (!nextProps.authenticated) this.props.navigation.navigate('Login')
+    if (!nextProps.authenticated) this.props.navigation.navigate('Login');
     if (nextProps.authenticated) this.props.navigation.navigate('WeLoggedIn');
   }
 
   render() {
-    const { container, image, text } = styles;
+    const { container, text } = styles;
     return (
       <View style={container}>
-        <Image style={image} source={require('./logo.png')}/>
         <Animatable.Text style={text} duration={1500} animation="rubberBand" easing="linear" iterationCount="infinite">Loading...</Animatable.Text>
         <Text>{(this.props.authenticated) ? 'LOGGED IN' : 'NOT LOGGED IN'}</Text>
       </View>

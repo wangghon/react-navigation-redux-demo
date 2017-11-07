@@ -5,7 +5,7 @@ import { NavigationActions, StackNavigator } from 'react-navigation';
 import Splash from 'components/Auth/Splash';
 import SignUp from 'components/Auth/SignupForm';
 import SignIn from 'components/Auth/LoginForm';
-import ForgottenPassword from 'components/Auth/ForgottenPassword';
+//import ForgottenPassword from 'components/Auth/ForgottenPassword';
 // this is an example of a nested view, you might see after logging in
 import Dashboard from 'components/Dashboard'; // index.js file
 
@@ -31,9 +31,9 @@ export const NavigationStack = StackNavigator({
   Login: {
     screen: SignIn,
   },
-  ForgottenPassword: {
-    screen: ForgottenPassword,
-  },
+  // ForgottenPassword: {
+  //   screen: ForgottenPassword,
+  // },
   WeLoggedIn: {
     screen: WeLoggedIn, // Notice how the screen is a StackNavigator
   }, // now you understand how it works!
