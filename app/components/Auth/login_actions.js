@@ -44,21 +44,15 @@ export const login = () => {
 
 //LOGOUT
 export const onLogout = (navigation) => {
-  return async (dispatch) => {
-    try {
-      AsyncStorage.removeItem('token');
+  return (dispatch) => {
+    AsyncStorage.removeItem('token');
 
-      navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        actions: [{ type: 'Navigate', routeName: 'Login' }],
-      });
+    navigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{ type: 'Navigate', routeName: 'Login' }],
+    });
 
-      return dispatch({ type: LOGOUT });
-    } catch (errors) {
-      // pass the user through with no error
-      // this restores INITIAL_STATE (see login_reducer.js)
-      return dispatch({ type: LOGOUT });
-    }
+    return dispatch({ type: LOGOUT });
   };
 };
