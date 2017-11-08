@@ -32,11 +32,21 @@ export const initializeApp = () => {
   };
 };
 
+//LOGIN
+export const login = () => {
+  const token = '123456';
+  AsyncStorage.setItem('token', token);
+  return {
+    type: LOGIN_SUCCESS,
+    payload: token,
+  };
+};
+
 //LOGOUT
 export const onLogout = (navigation) => {
   return async (dispatch) => {
     try {
-      await AsyncStorage.removeItem('token');
+      AsyncStorage.removeItem('token');
 
       navigation.dispatch({
         type: 'Navigation/RESET',

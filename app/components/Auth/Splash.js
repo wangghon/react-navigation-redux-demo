@@ -12,6 +12,7 @@ import { initializeApp } from './login_actions';
 @connect(
   state => ({
     authenticated: state.auth.isAuthenticated,
+    error: state.auth.error,
   }),
   { initializeApp },
 )
@@ -20,6 +21,7 @@ class Splash extends Component {
     initializeApp: PropTypes.func.isRequired,
     navigation: PropTypes.object.isRequired,
     authenticated: PropTypes.bool.isRequired,
+    error: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -32,8 +34,9 @@ class Splash extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.authenticated) this.props.navigation.navigate('Login');
-    if (nextProps.authenticated) this.props.navigation.navigate('WeLoggedIn');
+    const { authenticated, error } = nextProps;
+    if (!authenticated && error === 'No Token') this.props.navigation.navigate('Login');
+    if (authenticated) this.props.navigation.navigate('WeLoggedIn');
   }
 
   render() {

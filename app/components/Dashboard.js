@@ -7,7 +7,7 @@ import { onLogout } from 'components/Auth/login_actions';
 const Dashboard = ({ navigation }) => {
   const onPress = () => onLogout(navigation);
   return (
-    <View>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>We logged in already</Text>
       <TouchableOpacity onPress={onPress}>
         <Text>Log out to Reset the navigation stack</Text>
@@ -17,7 +17,7 @@ const Dashboard = ({ navigation }) => {
 };
 
 Dashboard.propTypes = {
-  navigation: PropTypes.object.isrequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 export default Dashboard;

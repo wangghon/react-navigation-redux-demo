@@ -10,11 +10,11 @@ class SignUp extends Component {
     navigation: PropTypes.object.isRequired,
   }
 
-  _onPress = () => this.props.navigation.navigate('Login');
+  _onPress = () => this.props.navigation.goBack(null);
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Signup</Text>
         <TouchableOpacity onPress={this._onPress}>
           <Text>Go to Login View</Text>
